@@ -8,12 +8,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="name">
-        <h2>Foodfeeda</h2>
-      </div>
-      <div className="navigation">
-        <h2>Test1</h2>
-        <h2>Test1</h2>
-        <h2>Test1</h2>
+        <img src="https://ik.imagekit.io/xye1mzry4hu/tr:w-200/foodfeeda_UIWymoc1J.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643893705054"/>
       </div>
       <div className="loginBtns">
         <button>Sign In</button>

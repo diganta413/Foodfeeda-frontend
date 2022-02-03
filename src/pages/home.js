@@ -1,4 +1,4 @@
-import Header from "../components/header";
+import Header from "../components/Header/header";
 import HeroImage from "../assets/heroImage.png";
 import AboutPic from "../assets/pic1.png";
 import ContributePic from "../assets/pic2.png";
@@ -9,7 +9,7 @@ import UserPic from "../assets/user.png";
 const Home = () => {
   return (
     <>
-      <Header />
+      
       <div className="heroContainer">
         <div className="heroBanner">
           <div className="heroText">
