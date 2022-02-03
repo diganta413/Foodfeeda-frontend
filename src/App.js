@@ -1,7 +1,7 @@
 import "./styles/styles.css";
 import Home from "./pages/home";
 import Header from "./components/Header/header";
-import User from "./components/User/User";
+import User from "./pages/User";
 import {
   BrowserRouter as Router,
   Routes,
