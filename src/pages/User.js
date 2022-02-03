@@ -1,11 +1,13 @@
-import React from 'react';
+import CreatePost from "../components/createPost";
 
-function User() {
+const User = () => {
   return (
-        <div>
-            User
-        </div>
+    <div className="userHomeLayout">
+      <div className="userHomeContent">
+        <CreatePost />
+      </div>
+    </div>
   );
-}
+};
 
 export default User;

@@ -1,15 +1,13 @@
-import Header from "../components/Header/header";
-import HeroImage from "../assets/heroImage.png";
-import AboutPic from "../assets/pic1.png";
-import ContributePic from "../assets/pic2.png";
-import NgoPic from "../assets/ngo.png";
-import GovPic from "../assets/gov.png";
-import UserPic from "../assets/user.png";
+import { HeroImage } from "../components/assets";
+import { AboutPic } from "../components/assets";
+import { ContributePic } from "../components/assets";
+import { NgoPic } from "../components/assets";
+import { GovPic } from "../components/assets";
+import { UserPic } from "../components/assets";
 
 const Home = () => {
   return (
     <>
-      
       <div className="heroContainer">
         <div className="heroBanner">
           <div className="heroText">

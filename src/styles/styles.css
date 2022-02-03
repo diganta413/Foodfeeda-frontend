@@ -273,6 +273,10 @@ button {
           justify-content: space-evenly;
 }
 
+.aboutContainer .aboutSection .aboutText h1 {
+  color: #f1f1f1;
+}
+
 @media (max-width: 720px) {
   .aboutContainer .aboutSection {
     -ms-grid-columns: 1fr;
@@ -348,7 +352,7 @@ button {
 }
 
 .workContainer {
-  padding: 30px 20px;
+  padding: 30px 0;
 }
 
 .workContainer .workSection {
@@ -357,6 +361,7 @@ button {
 }
 
 .workContainer .workSection h1 {
+  padding: 0 20px;
   margin-bottom: 15px;
 }
 
@@ -368,6 +373,7 @@ button {
   gap: 20px;
   grid-auto-flow: column;
   overflow-x: scroll;
+  padding: 0 20px;
 }
 
 .workContainer .workGrid .gridItem {
@@ -447,4 +453,110 @@ button {
 
 .workContainer .workGrid::-webkit-scrollbar {
   width: 0 !important;
+}
+
+.createPostContainer {
+  background-color: #03001d;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.createPostContainer .createPostHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+  color: #f1f1f1;
+}
+
+.createPostContainer .createPostHeader h3 {
+  color: #f1f1f1;
+}
+
+.createPostContainer .createPostHeader img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.createPostContainer .createPostContent {
+  padding-top: 20px;
+}
+
+.createPostContainer .createPostContent .inputContainer {
+  width: 100%;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+}
+
+.createPostContainer .createPostContent .inputContainer input,
+.createPostContainer .createPostContent .inputContainer textarea {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  font-size: 22px;
+  padding: 0 10px;
+  white-space: pre-line;
+}
+
+.createPostContainer .createPostContent .buttonContainer {
+  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+}
+
+.createPostContainer .createPostContent .buttonContainer .imageBtn {
+  color: #f1f1f1;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.createPostContainer .createPostContent .buttonContainer .postBtn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  outline: none;
+  cursor: pointer;
+  border: 2px solid #f1f1f1;
+  background-color: #f1f1f1;
+  color: #03001d;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.userHomeLayout .userHomeContent {
+  padding: 10px;
+}
+
+@media (max-width: 500px) {
+  .userHomeLayout {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    padding-bottom: 65px;
+  }
 }
