@@ -1,40 +1,27 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {LoginOutlined} from "@ant-design/icons";
+import AuthModal from "../Modals/AuthModal";
 
 const Header = () => {
-  const [modal, setModal] = useState(0);
-
+  const [modal, setmodal] = useState(false);
+  console.log(modal)
+  
+  const handleClose = () => {
+    setmodal(false)
+  }
+  
   return (
     <div className="header">
       <div className="name">
         <img src="https://ik.imagekit.io/xye1mzry4hu/tr:w-200/foodfeeda_UIWymoc1J.png?ik-sdk-version=javascript-1.4.3&updatedAt=1643893705054"/>
       </div>
       <div className="loginBtns">
-        <button>Sign In</button>
+            <LoginOutlined className="text-[30px] cursor-pointer" onClick={() => setmodal(!modal)}/>
+  
       </div>
-      <button
-        className="modalBtn"
-        onClick={() => setModal(modal === 1 ? 0 : 1)}
-      >
-        {modal === 0 ? (
-          <FontAwesomeIcon icon={faBars} />
-        ) : (
-          <FontAwesomeIcon icon={faTimes} />
-        )}
-      </button>
-      {modal === 1 ? (
-        <div className="modalContainer">
-          <div className="modal">
-            <div className="modalContent">
-              <h2>Test1</h2>
-              <h2>Test1</h2>
-              <h2>Test1</h2>
-              <button>Sign In</button>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      <AuthModal visible={modal} handleClose={handleClose}/>
     </div>
   );
 };
