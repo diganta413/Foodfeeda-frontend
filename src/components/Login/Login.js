@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined,LockOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Checkbox,Row } from 'antd';
+import { UserOutlined,LockOutlined,GooglePlusOutlined,FacebookFilled } from "@ant-design/icons";
 
 const Login = () => {
     const onFinish = (values) => {
@@ -42,11 +42,23 @@ const Login = () => {
 
       <Form.Item className="ml-[42%]">
         <Button htmlType="submit" type="primary" 
-        className="bg-[#52c41a] border-[#52c41a] hover:bg-[#73d13d] hover:border-[#73d13d] text-[15px]">
+        className="rounded bg-[#52c41a] border-[#52c41a] hover:bg-[#73d13d] hover:border-[#73d13d] text-[15px]">
             Log in
         </Button>
         
       </Form.Item>
+
+
+      <div>
+          <p className="ml-[30%]">---------- OR ----------</p>
+          <Row className="w-[90%] ml-[10%] mt-[30px]">
+            <Button className="font-bold bg-[#D34F44] border-[#D34F44] h-[40px] 
+            rounded hover:bg-[#D34F44] hover:border-[#D34F44]" 
+            type="primary"><GooglePlusOutlined className="text-[20px]"/> Login with Google</Button>
+            <Button className="font-bold bg-[#4267b2] border-[#4267b2] 
+            ml-[5%] h-[40px] rounded hover:bg-[#4267b2] hover:border-[#4267b2]" type="primary"><FacebookFilled className="text-[20px]"/> Login with Facebook</Button>
+          </Row>
+      </div>
     </Form>
     )
 }
