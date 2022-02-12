@@ -51,11 +51,11 @@ const Login = () => {
 
       <div>
           <p className="ml-[30%]">---------- OR ----------</p>
-          <Row className="w-[90%] ml-[10%] mt-[30px]">
+          <Row className="w-[90%] ml-[8%] mt-[30px]">
             <Button className="font-bold bg-[#D34F44] border-[#D34F44] h-[40px] 
-            rounded hover:bg-[#D34F44] hover:border-[#D34F44]" 
+            rounded hover:bg-[#D34F44] hover:border-[#D34F44] w-[45%]" 
             type="primary"><GooglePlusOutlined className="text-[20px]"/> Login with Google</Button>
-            <Button className="font-bold bg-[#4267b2] border-[#4267b2] 
+            <Button className="font-bold bg-[#4267b2] border-[#4267b2] w-[45%] 
             ml-[5%] h-[40px] rounded hover:bg-[#4267b2] hover:border-[#4267b2]" type="primary"><FacebookFilled className="text-[20px]"/> Login with Facebook</Button>
           </Row>
       </div>

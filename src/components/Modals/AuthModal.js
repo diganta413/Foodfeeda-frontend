@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import { Modal } from "antd";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 const { TabPane } = Tabs;
 
@@ -12,7 +13,7 @@ function AuthModal({ visible,handleClose }) {
       <Login/>
     </TabPane>
     <TabPane tab="Register" key="2">
-      Content of Tab Pane 2
+      <Register/>
     </TabPane>
   </Tabs>
   </Modal>;
