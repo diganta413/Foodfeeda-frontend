@@ -1,14 +1,18 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { UserPic } from "../components/assets";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { MapContainer, TileLayer } from "react-leaflet";
+import LocationMarker from "./locationMarker";
 
 const CreatePost = () => {
   const [file, setFile] = useState(null);
   const [modal, setModal] = useState(0);
   const [text, setText] = useState({ desc: "" });
+  const [position, setPosition] = useState({ lat: "22.541", lng: "88.353" });
+
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (text.desc.length === 0 || text.desc.includes("<br")) return;
@@ -28,12 +32,16 @@ const CreatePost = () => {
     const data = {
       userid: "#placeholder",
       postid: "#placeholder",
+      name: "#placeholder",
       photo: "url",
       desc: text.desc.substring(3, text.desc.length - 4),
       received: false,
       createdAt: `${hour}-${min}-${date}-${month}-${year}`,
+      latitude: position.lat,
+      longitude: position.lng,
     };
     console.log(data);
+    setModal(0);
   };
 
   const handleQuillEdit = (value) => {
@@ -89,6 +97,11 @@ const CreatePost = () => {
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
+
+              <MapContainer center={[22.541, 88.353]} zoom={13}>
+                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                <LocationMarker position={position} setPosition={setPosition} />
+              </MapContainer>
 
               <div className="buttonContainer">
                 <label className="imageBtn" htmlFor="fileUpload">
