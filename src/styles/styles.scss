@@ -26,6 +26,15 @@ a {
 p {
   font-size: 18px;
 }
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 26px;
+}
+h3 {
+  font-size: 24px;
+}
 html {
   height: 100%;
   width: 100%;
@@ -411,7 +420,8 @@ button {
     left: 0;
     display: flex;
     justify-content: center;
-    padding: 80px 10px 10px 10px;
+    padding: 20px 10px 10px 10px;
+    overflow: scroll;
 
     .modalContent {
       height: fit-content;
@@ -421,7 +431,7 @@ button {
       background-color: $text2;
 
       .createPostHeader {
-        padding: 20px 10px 0px 20px;
+        padding: 20px 10px 20px 20px;
         h3 {
           margin-right: auto;
           margin: 0;
@@ -432,21 +442,35 @@ button {
         }
       }
       .ql-container {
-        margin-top: 20px;
         border: none;
+        padding: 10px;
         p {
           font-size: 20px;
+        }
+        .ql-editor {
+          border: 2px solid black;
+          border-radius: 15px;
         }
       }
     }
   }
   .createPostContent {
+    h3 {
+      padding-left: 20px;
+    }
+    .inputContainer {
+      padding: 10px;
+    }
     input {
       outline: none;
       border: none;
       height: fit-content;
       width: 100%;
       font-size: 22px;
+      background-color: transparent;
+      padding: 15px;
+      border: 2px solid black;
+      border-radius: 15px;
     }
     .buttonContainer {
       padding: 20px;

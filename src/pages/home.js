@@ -20,18 +20,18 @@ const Home = () => {
             </p>
             <div className="icons">
               <div className="iconBox box3">
-                <img src={UserPic} />
+                <img src={UserPic} alt="UserPic" />
               </div>
               <div className="iconBox box1">
-                <img src={NgoPic} />
+                <img src={NgoPic} alt="NgoPic" />
               </div>
               <div className="iconBox box2">
-                <img src={GovPic} />
+                <img src={GovPic} alt="GovPic" />
               </div>
             </div>
           </div>
           <div className="heroImage">
-            <img src={HeroImage} />
+            <img src={HeroImage} alt="HeroImage" />
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@ const Home = () => {
       <div className="aboutContainer">
         <div className="aboutSection">
           <div className="aboutImage">
-            <img src={AboutPic} />
+            <img src={AboutPic} alt="AboutPic" />
           </div>
           <div className="aboutText">
             <h1>Our Mission</h1>
@@ -70,7 +70,7 @@ const Home = () => {
               </p>
             </div>
             <div className="contributeImage">
-              <img src={ContributePic} />
+              <img src={ContributePic} alt="ContributePic" />
             </div>
           </div>
         </div>
@@ -89,7 +89,7 @@ const Home = () => {
           <div className="workGrid">
             <div className="gridItem item1">
               <div className="gridItemImage">
-                <img src={UserPic} />
+                <img src={UserPic} alt="UserPic" />
               </div>
               <p className="gridItemName">User</p>
               <div className="list">
@@ -118,7 +118,7 @@ const Home = () => {
             </div>
             <div className="gridItem item2">
               <div className="gridItemImage">
-                <img src={NgoPic} />
+                <img src={NgoPic} alt="NgoPic" />
               </div>
               <p className="gridItemName">NGO</p>
               <div className="list">
@@ -147,7 +147,7 @@ const Home = () => {
             </div>
             <div className="gridItem item3">
               <div className="gridItemImage">
-                <img src={GovPic} />
+                <img src={GovPic} alt="GovPic" />
               </div>
               <p className="gridItemName">Government</p>
               <div className="list">

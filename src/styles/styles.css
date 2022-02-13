@@ -18,6 +18,18 @@ p {
   font-size: 18px;
 }
 
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -518,7 +530,8 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 80px 10px 10px 10px;
+  padding: 20px 10px 10px 10px;
+  overflow: scroll;
 }
 
 .createPostContainer .modal .modalContent {
@@ -532,7 +545,7 @@ button {
 }
 
 .createPostContainer .modal .modalContent .createPostHeader {
-  padding: 20px 10px 0px 20px;
+  padding: 20px 10px 20px 20px;
 }
 
 .createPostContainer .modal .modalContent .createPostHeader h3 {
@@ -546,12 +559,25 @@ button {
 }
 
 .createPostContainer .modal .modalContent .ql-container {
-  margin-top: 20px;
   border: none;
+  padding: 10px;
 }
 
 .createPostContainer .modal .modalContent .ql-container p {
   font-size: 20px;
+}
+
+.createPostContainer .modal .modalContent .ql-container .ql-editor {
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.createPostContainer .createPostContent h3 {
+  padding-left: 20px;
+}
+
+.createPostContainer .createPostContent .inputContainer {
+  padding: 10px;
 }
 
 .createPostContainer .createPostContent input {
@@ -562,6 +588,10 @@ button {
   height: fit-content;
   width: 100%;
   font-size: 22px;
+  background-color: transparent;
+  padding: 15px;
+  border: 2px solid black;
+  border-radius: 15px;
 }
 
 .createPostContainer .createPostContent .buttonContainer {

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { UserPic } from "../components/assets";
+import { UserPic } from "../assets";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { MapContainer, TileLayer } from "react-leaflet";
@@ -12,6 +12,7 @@ const CreatePost = () => {
   const [modal, setModal] = useState(0);
   const [text, setText] = useState({ desc: "" });
   const [position, setPosition] = useState({ lat: "22.541", lng: "88.353" });
+  const title = useRef("");
 
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -23,22 +24,18 @@ const CreatePost = () => {
     let ISTTime = new Date(
       newDate.getTime() + (ISTOffset + currentOffset) * 60000
     );
-    let date = ISTTime.getDate();
-    let month = ISTTime.getMonth() + 1;
-    let year = ISTTime.getFullYear();
-    let hour = ISTTime.getHours();
-    let min = ISTTime.getMinutes();
 
     const data = {
       userid: "#placeholder",
       postid: "#placeholder",
       name: "#placeholder",
       photo: "url",
+      title: title.current.value,
       desc: text.desc.substring(3, text.desc.length - 4),
-      received: false,
-      createdAt: `${hour}-${min}-${date}-${month}-${year}`,
+      createdAt: ISTTime,
       latitude: position.lat,
       longitude: position.lng,
+      received: false,
     };
     console.log(data);
     setModal(0);
@@ -81,24 +78,32 @@ const CreatePost = () => {
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
-            <ReactQuill
-              value={text.desc}
-              onChange={handleQuillEdit}
-              modules={{ toolbar: false }}
-              placeholder="Write something here..."
-            />
+
             <form className="createPostContent" onSubmit={HandleSubmit}>
+              <input
+                type="file"
+                style={{ display: "none" }}
+                id="fileUpload"
+                accept=".png,.jpeg,.jpg"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <h3>Title</h3>
               <div className="inputContainer">
                 <input
-                  type="file"
-                  style={{ display: "none" }}
-                  id="fileUpload"
-                  accept=".png,.jpeg,.jpg"
-                  onChange={(e) => setFile(e.target.files[0])}
+                  type="text"
+                  ref={title}
+                  placeholder="Add a Title"
+                  required
                 />
               </div>
-
-              <MapContainer center={[22.541, 88.353]} zoom={13}>
+              <h3>Description</h3>
+              <ReactQuill
+                value={text.desc}
+                onChange={handleQuillEdit}
+                modules={{ toolbar: false }}
+                placeholder="Write something here..."
+              />
+              <MapContainer center={[position.lat, position.lng]} zoom={13}>
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <LocationMarker position={position} setPosition={setPosition} />
               </MapContainer>

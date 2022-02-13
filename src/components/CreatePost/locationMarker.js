@@ -23,7 +23,7 @@ const LocationMarker = ({ position, setPosition }) => {
         }
       },
     }),
-    []
+    [setPosition]
   );
 
   return position === null ? null : (

@@ -1,4 +1,4 @@
-import CreatePost from "../components/createPost";
+import CreatePost from "../components/CreatePost/createPost";
 
 const User = () => {
   return (
