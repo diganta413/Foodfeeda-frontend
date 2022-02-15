@@ -30,6 +30,10 @@ h3 {
   font-size: 24px;
 }
 
+h3 {
+  font-size: 20px;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -42,6 +46,13 @@ body {
   font-family: "Nunito";
   color: #03001d;
   background-color: #e9e9e9;
+}
+
+img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 button {
@@ -474,7 +485,6 @@ button {
   background-color: #03001d;
   padding: 20px;
   border-radius: 15px;
-  max-width: 500px;
   margin: 0 auto;
   width: 100%;
 }
@@ -495,12 +505,12 @@ button {
   color: #f1f1f1;
 }
 
-.createPostContainer .createPostHeader img {
+.createPostContainer .createPostHeader .imageContainer {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  overflow: hidden;
+  padding: 5px;
 }
 
 .createPostContainer .createPostButton {
@@ -521,17 +531,15 @@ button {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.604);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
   padding: 20px 10px 10px 10px;
   overflow: scroll;
+  z-index: 999;
 }
 
 .createPostContainer .modal .modalContent {
@@ -570,6 +578,10 @@ button {
 .createPostContainer .modal .modalContent .ql-container .ql-editor {
   border: 2px solid black;
   border-radius: 15px;
+}
+
+.createPostContainer .modal .modalContent .ql-container .ql-editor.ql-blank::before {
+  padding-left: 15px;
 }
 
 .createPostContainer .createPostContent h3 {
@@ -631,15 +643,148 @@ button {
   transition: 0.3s;
 }
 
-.userHomeLayout .userHomeContent {
+.postContainer {
+  background-color: #03001d;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.postContainer .postHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.postContainer .postHeader h2 {
+  color: #f1f1f1;
+}
+
+.postContainer .postHeader .imageContainer {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.postContainer .postTitle {
+  padding: 0 20px 20px 20px;
+}
+
+.postContainer .postTitle h4 {
+  color: #f1f1f1;
+}
+
+.postContainer .postImage {
+  border-radius: 13px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.postContainer .postImage .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.377);
+  border-radius: 13px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+}
+
+.postContainer .postImage .text h2 {
+  font-size: 60px;
+  color: #f1f1f1;
+}
+
+.postContainer .postImage:hover img {
+  -webkit-filter: blur(8px);
+          filter: blur(8px);
+}
+
+.postContainer .postImage:hover .text {
+  visibility: visible;
+}
+
+.postContainer .modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.604);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  padding: 20px 10px 10px 10px;
+  overflow: scroll;
+  z-index: 999;
+}
+
+.postContainer .modal .modalContent {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+}
+
+.postContainer .modal .modalContent .createPostHeader {
+  padding: 20px 10px 20px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+}
+
+.postContainer .modal .modalContent .createPostHeader h3 {
+  margin-right: auto;
+  margin: 0;
+  color: #03001d;
+}
+
+.postContainer .modal .modalContent .createPostHeader .imageContainer {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.postContainer .modal .modalContent .createPostHeader button {
+  margin-left: auto;
+}
+
+.userHomeLayout {
   padding: 10px;
+}
+
+.userHomeLayout .userHomeContent {
+  max-width: 500px;
+  display: -ms-grid;
+  display: grid;
+  gap: 10px;
+  margin: 0 auto;
 }
 
 @media (max-width: 500px) {
   .userHomeLayout {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-    padding-bottom: 65px;
   }
 }
 

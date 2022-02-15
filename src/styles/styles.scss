@@ -35,6 +35,9 @@ h2 {
 h3 {
   font-size: 24px;
 }
+h3 {
+  font-size: 20px;
+}
 html {
   height: 100%;
   width: 100%;
@@ -47,6 +50,13 @@ body {
   font-family: "Nunito";
   color: $text1;
   background-color: $background1;
+}
+
+img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 button {
@@ -375,7 +385,6 @@ button {
   background-color: $background2;
   padding: 20px;
   border-radius: 15px;
-  max-width: 500px;
   margin: 0 auto;
   width: 100%;
 
@@ -388,12 +397,12 @@ button {
     h3 {
       color: $text2;
     }
-
-    img {
+    .imageContainer {
       height: 60px;
       width: 60px;
       border-radius: 50%;
-      object-fit: cover;
+      overflow: hidden;
+      padding: 5px;
     }
   }
 
@@ -415,13 +424,14 @@ button {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.604);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     padding: 20px 10px 10px 10px;
     overflow: scroll;
+    z-index: 999;
 
     .modalContent {
       height: fit-content;
@@ -450,6 +460,9 @@ button {
         .ql-editor {
           border: 2px solid black;
           border-radius: 15px;
+        }
+        .ql-editor.ql-blank::before {
+          padding-left: 15px;
         }
       }
     }
@@ -504,15 +517,120 @@ button {
   }
 }
 
+.postContainer {
+  background-color: $background2;
+  border-radius: 15px;
+  width: 100%;
+  .postHeader {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    align-items: center;
+    h2 {
+      color: $text2;
+    }
+    .imageContainer {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      padding: 5px;
+    }
+  }
+  .postTitle {
+    padding: 0 20px 20px 20px;
+    h4 {
+      color: $text2;
+    }
+  }
+  .postImage {
+    border-radius: 13px;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+
+    .text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.377);
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      visibility: hidden;
+      h2 {
+        font-size: 60px;
+        color: $text2;
+      }
+    }
+    &:hover {
+      img {
+        filter: blur(8px);
+      }
+      .text {
+        visibility: visible;
+      }
+    }
+  }
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.604);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px 10px 10px 10px;
+    overflow: scroll;
+    z-index: 999;
+
+    .modalContent {
+      height: fit-content;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 15px;
+      background-color: $text2;
+
+      .createPostHeader {
+        padding: 20px 10px 20px 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        h3 {
+          margin-right: auto;
+          margin: 0;
+          color: $text1;
+        }
+        .imageContainer {
+          height: 60px;
+          width: 60px;
+          border-radius: 50%;
+          overflow: hidden;
+          padding: 5px;
+        }
+        button {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}
+
 .userHomeLayout {
+  padding: 10px;
   .userHomeContent {
-    padding: 10px;
+    max-width: 500px;
+    display: grid;
+    gap: 10px;
+    margin: 0 auto;
   }
 }
 @media (max-width: 500px) {
   .userHomeLayout {
     grid-template-columns: 1fr;
-    padding-bottom: 65px;
   }
 }
 
