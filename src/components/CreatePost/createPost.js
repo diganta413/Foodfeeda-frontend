@@ -53,7 +53,9 @@ const CreatePost = () => {
   return (
     <div className="createPostContainer">
       <div className="createPostHeader">
-        <img src={UserPic} alt="profilePicture"></img>
+        <div className="imageContainer">
+          <img src={UserPic} alt="profilePicture" />
+        </div>
         <h3>Username</h3>
       </div>
       <button
@@ -68,7 +70,9 @@ const CreatePost = () => {
         <div className="modal">
           <div className="modalContent">
             <div className="createPostHeader">
-              <img src={UserPic} alt="profilePicture"></img>
+              <div className="imageContainer">
+                <img src={UserPic} alt="profilePicture" />
+              </div>
               <h3>Username</h3>
               <button
                 onClick={() => {
