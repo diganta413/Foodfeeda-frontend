@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { LoginOutlined } from "@ant-design/icons";
-import AuthModal from "../Modals/AuthModal";
+import { Button } from "antd";
+import LoginModal from "../Modals/LoginModal";
+import RegisterModal from "../Modals/RegsiterModal";
 
 const Header = () => {
-  const [modal, setmodal] = useState(false);
-  console.log(modal);
+  const [loginmodal, setloginmodal] = useState(false);
+  const [registermodal, setregistermodal] = useState(false);
 
-  const handleClose = () => {
-    setmodal(false);
+  const handleClose_login = () => {
+    setloginmodal(false);
   };
+  const handleClose_register = () => {
+    setregistermodal(false)
+  }
 
   return (
     <div className="header">
@@ -18,13 +22,12 @@ const Header = () => {
           alt="logo"
         />
       </div>
-      <div className="loginBtns">
-        <LoginOutlined
-          className="text-[30px] cursor-pointer"
-          onClick={() => setmodal(!modal)}
-        />
+      <div className="loginBtns flex">
+        <Button onClick={() => setloginmodal(!loginmodal)}>Log in</Button>
+        <Button onClick={() => setregistermodal(!registermodal)} className="ml-[10px] border-2">Register</Button>
       </div>
-      <AuthModal visible={modal} handleClose={handleClose} />
+      <LoginModal visible={loginmodal} handleClose={handleClose_login} />
+      <RegisterModal visible={registermodal} handleClose={handleClose_register}/>
     </div>
   );
 };
