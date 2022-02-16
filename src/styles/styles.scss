@@ -71,63 +71,7 @@ button {
   transition: 0.3s;
 }
 
-.header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
-
-  .navigation {
-    display: flex;
-    gap: 10px;
-  }
-  .modalBtn {
-    padding: 10px;
-    font-size: 22px;
-    display: none;
-  }
-
-  .modalContainer {
-    position: absolute;
-    padding: 0 20px;
-    width: 100%;
-    right: 0px;
-    left: 0px;
-    bottom: -180px;
-
-    .modal {
-      padding: 15px;
-      background-color: $background2;
-      border-radius: 15px;
-      button {
-        background-color: $background1;
-      }
-      .modalContent {
-        color: $background1;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-    }
-  }
-}
-@media (max-width: 500px) {
-  .header {
-    padding: 15px 15px 15px 25px;
-    .modalBtn {
-      display: block;
-    }
-    .navigation {
-      display: none;
-    }
-    .loginBtns {
-      display: none;
-    }
-  }
-}
-
+//Home Page
 .heroContainer {
   padding: 80px 20px;
   .heroBanner {
@@ -381,6 +325,64 @@ button {
   }
 }
 
+// Reusable Components
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+
+  .navigation {
+    display: flex;
+    gap: 10px;
+  }
+  .modalBtn {
+    padding: 10px;
+    font-size: 22px;
+    display: none;
+  }
+
+  .modalContainer {
+    position: absolute;
+    padding: 0 20px;
+    width: 100%;
+    right: 0px;
+    left: 0px;
+    bottom: -180px;
+
+    .modal {
+      padding: 15px;
+      background-color: $background2;
+      border-radius: 15px;
+      button {
+        background-color: $background1;
+      }
+      .modalContent {
+        color: $background1;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .header {
+    padding: 15px 15px 15px 25px;
+    .modalBtn {
+      display: block;
+    }
+    .navigation {
+      display: none;
+    }
+    .loginBtns {
+      display: none;
+    }
+  }
+}
+
 .createPostContainer {
   background-color: $background2;
   padding: 20px;
@@ -593,6 +595,7 @@ button {
       max-width: 600px;
       border-radius: 15px;
       background-color: $text2;
+      overflow: hidden;
 
       .createPostHeader {
         padding: 20px 10px 20px 20px;
@@ -615,10 +618,53 @@ button {
           margin-left: auto;
         }
       }
+      .details {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        padding: 10px;
+        place-items: center;
+        gap: 10px;
+        .date,
+        .desc {
+          background-color: $background2;
+          width: 100%;
+          height: 100%;
+          border-radius: 15px;
+          padding: 15px;
+
+          h2 {
+            color: $text2;
+            text-align: center;
+            margin-top: 10px;
+          }
+          p,
+          h4 {
+            color: $text2;
+          }
+        }
+        .date {
+          height: 100%;
+          width: 100%;
+          display: grid;
+          place-items: center;
+        }
+      }
     }
   }
 }
 
+//Snippets
+
+.leaflet-container {
+  width: 100%;
+  height: 300px;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+//Pages
 .userHomeLayout {
   padding: 10px;
   .userHomeContent {
@@ -632,9 +678,4 @@ button {
   .userHomeLayout {
     grid-template-columns: 1fr;
   }
-}
-
-.leaflet-container {
-  width: 100%;
-  height: 300px;
 }
