@@ -51,7 +51,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="createPostContainer">
+    <div className="createPostContainer shadow">
       <div className="createPostHeader">
         <div className="imageContainer">
           <img src={UserPic} alt="profilePicture" />

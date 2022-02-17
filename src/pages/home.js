@@ -19,13 +19,13 @@ const Home = () => {
               asaf sa ffssfsaf asf as fafsasfs saff
             </p>
             <div className="icons">
-              <div className="iconBox box3">
+              <div className="iconBox box3 shadow">
                 <img src={UserPic} alt="UserPic" />
               </div>
-              <div className="iconBox box1">
+              <div className="iconBox box1 shadow">
                 <img src={NgoPic} alt="NgoPic" />
               </div>
-              <div className="iconBox box2">
+              <div className="iconBox box2 shadow">
                 <img src={GovPic} alt="GovPic" />
               </div>
             </div>
@@ -37,7 +37,7 @@ const Home = () => {
       </div>
 
       <div className="aboutContainer">
-        <div className="aboutSection">
+        <div className="aboutSection shadow">
           <div className="aboutImage">
             <img src={AboutPic} alt="AboutPic" />
           </div>

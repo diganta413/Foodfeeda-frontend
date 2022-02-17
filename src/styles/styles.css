@@ -445,7 +445,7 @@ button {
 
 .header .modalContainer .modal {
   padding: 15px;
-  background-color: #03001d;
+  background-color: #fff;
   border-radius: 15px;
 }
 
@@ -482,7 +482,7 @@ button {
 }
 
 .createPostContainer {
-  background-color: #03001d;
+  background-color: #fff;
   padding: 20px;
   border-radius: 15px;
   margin: 0 auto;
@@ -501,16 +501,13 @@ button {
   width: 100%;
 }
 
-.createPostContainer .createPostHeader h3 {
-  color: #f1f1f1;
-}
-
 .createPostContainer .createPostHeader .imageContainer {
   height: 60px;
   width: 60px;
   border-radius: 50%;
   overflow: hidden;
-  padding: 5px;
+  padding: 10px;
+  background-color: #03001d;
 }
 
 .createPostContainer .createPostButton {
@@ -547,7 +544,7 @@ button {
   height: -moz-fit-content;
   height: fit-content;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   border-radius: 15px;
   background-color: #f1f1f1;
 }
@@ -644,7 +641,7 @@ button {
 }
 
 .postContainer {
-  background-color: #03001d;
+  background-color: #fff;
   border-radius: 15px;
   width: 100%;
 }
@@ -660,31 +657,25 @@ button {
           align-items: center;
 }
 
-.postContainer .postHeader h2 {
-  color: #f1f1f1;
-}
-
 .postContainer .postHeader .imageContainer {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
-  padding: 5px;
+  padding: 10px;
+  background-color: #03001d;
 }
 
 .postContainer .postTitle {
   padding: 0 20px 20px 20px;
 }
 
-.postContainer .postTitle h4 {
-  color: #f1f1f1;
-}
-
 .postContainer .postImage {
   border-radius: 13px;
-  background-color: white;
+  background-color: #03001d;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
 .postContainer .postImage .text {
@@ -735,7 +726,7 @@ button {
   height: -moz-fit-content;
   height: fit-content;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   border-radius: 15px;
   background-color: #f1f1f1;
   overflow: hidden;
@@ -763,7 +754,8 @@ button {
   width: 60px;
   border-radius: 50%;
   overflow: hidden;
-  padding: 5px;
+  padding: 10px;
+  background-color: #03001d;
 }
 
 .postContainer .modal .modalContent .createPostHeader button {
@@ -811,6 +803,11 @@ button {
   place-items: center;
 }
 
+.shadow {
+  -webkit-box-shadow: 0px 1.1px 2.2px rgba(0, 0, 0, 0.02), 0px 2.7px 5.3px rgba(0, 0, 0, 0.028), 0px 5px 10px rgba(0, 0, 0, 0.035), 0px 8.9px 17.9px rgba(0, 0, 0, 0.042), 0px 16.7px 33.4px rgba(0, 0, 0, 0.05), 0px 40px 80px rgba(0, 0, 0, 0.07);
+          box-shadow: 0px 1.1px 2.2px rgba(0, 0, 0, 0.02), 0px 2.7px 5.3px rgba(0, 0, 0, 0.028), 0px 5px 10px rgba(0, 0, 0, 0.035), 0px 8.9px 17.9px rgba(0, 0, 0, 0.042), 0px 16.7px 33.4px rgba(0, 0, 0, 0.05), 0px 40px 80px rgba(0, 0, 0, 0.07);
+}
+
 .leaflet-container {
   width: 100%;
   height: 300px;
@@ -821,14 +818,14 @@ button {
 }
 
 .userHomeLayout {
-  padding: 10px;
+  padding: 15px;
 }
 
 .userHomeLayout .userHomeContent {
-  max-width: 500px;
+  max-width: 600px;
   display: -ms-grid;
   display: grid;
-  gap: 10px;
+  gap: 25px;
   margin: 0 auto;
 }
 

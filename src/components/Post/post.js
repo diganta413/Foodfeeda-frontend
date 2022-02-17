@@ -5,12 +5,12 @@ import PostModal from "./postModal";
 const Post = () => {
   const [modal, setModal] = useState(0);
   return (
-    <div className="postContainer">
+    <div className="postContainer shadow">
       <div className="postHeader">
         <div className="imageContainer">
           <img src={UserPic} alt="postImage" />
         </div>
-        <h2>Name</h2>
+        <h2>Username</h2>
       </div>
       <div className="postTitle">
         <h4>Lorem ipsum blah blah blah</h4>
