@@ -26,7 +26,7 @@ import { commonError, errorResponse } from "../../helpers/errorResponse";
 
 const { Option } = Select;
 
-const Register = () => {
+const NgoRegister = () => {
     const [form] = Form.useForm();
     const [initialValues, setInitialValues] = useState({});
     const [otp, setotp] = useState(false);
@@ -88,7 +88,7 @@ const Register = () => {
         const appVerifier = window.recaptchaVerifier;
         signInWithPhoneNumber(auth, phone, appVerifier)
             .then((confirmationResult) => {
-                commonSuccess("Otp Sent");
+                alert("Code sent");
                 setotp(true);
                 setfinal(confirmationResult);
 
@@ -102,16 +102,14 @@ const Register = () => {
 
     const ValidateOtp = () => {
         if (form2.getFieldValue("otp") === null || final === null) return;
-        console.log(form2.getFieldValue("otp"));
         final
-            ?.confirm(Number(form2.getFieldValue("otp")))
+            ?.confirm(form2.getFieldValue("otp"))
             .then((result) => {
                 //alert("signed  in")
                 var formData = new FormData();
                 const data = form.getFieldsValue();
                 formData.append("email", form.getFieldValue("email"));
-                formData.append("first_name", form.getFieldValue("first_name"));
-                formData.append("last_name", form.getFieldValue("last_name"));
+                formData.append("name", form.getFieldValue("name"));
                 formData.append("email", form.getFieldValue("email"));
                 formData.append(
                     "phone_number",
@@ -124,12 +122,13 @@ const Register = () => {
                 formData.append("type", "1");
                 formData.append("country", form.getFieldValue("country"));
                 formData.append("state", form.getFieldValue("state"));
-                formData.append("gender", form.getFieldValue("gender"));
                 formData.append("city", form.getFieldValue("city"));
+                formData.append("gender", form.getFieldValue("gender"));
                 formData.append("pin", form.getFieldValue("pin"));
                 formData.append(
-                    "profile_photo",
-                    form.getFieldValue("profile_pic").fileList[0].originFileObj
+                    "ngo_approval_cert",
+                    form.getFieldValue("ngo_approval_cert").fileList[0]
+                        .originFileObj
                 );
                 const dateFormat = "YYYY-MM-DD";
                 const toDateFormat = moment(
@@ -144,21 +143,19 @@ const Register = () => {
                 }
                 axios
                     .post(
-                        "http://127.0.0.1:8000/api/auth/donner/register/",
+                        "http://localhost:8000/api/auth/ngo/register/",
                         formData
                     )
                     .then((res) => {
-                        commonSuccess(res.data.status);
-                        commonSuccess("Check Email for verification");
-                        //console.log(res)
+                        commonSuccess(res);
+                        console.log(res);
                         setTimeout(() => {
                             setotp(false);
-                            form.resetFields();
                         }, 3000);
                     })
                     .catch((err) => {
                         console.log(err.response);
-                        //errorResponse(err.response)
+                        errorResponse(err.response);
                     });
             })
             .catch((err) => {
@@ -184,32 +181,11 @@ const Register = () => {
         >
             <Row className="justify-between">
                 <Form.Item
-                    name="first_name"
-                    label="First Name"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input your first name!",
-                        },
-                    ]}
+                    label="Name"
+                    name="name"
+                    rules={[{ message: "Please input ngo name!" }]}
                 >
-                    <Input placeholder="First Name" />
-                </Form.Item>
-                <Form.Item
-                    name="middle_name"
-                    label="Middle Name"
-                    rules={[{ message: "Please input your middle name!" }]}
-                >
-                    <Input placeholder="Middle Name" />
-                </Form.Item>
-            </Row>
-            <Row className="justify-between">
-                <Form.Item
-                    label="Last Name"
-                    name="last_name"
-                    rules={[{ message: "Please input your last name!" }]}
-                >
-                    <Input placeholder="Last Name" />
+                    <Input placeholder="Name" />
                 </Form.Item>
                 <Form.Item
                     name="email"
@@ -307,44 +283,15 @@ const Register = () => {
                     </Form.Item>
                 </Row>
             </Form.Item>
-            <Row>
-                <Form.Item
-                    label="Date of birth"
-                    name="dob"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input your date of birth",
-                        },
-                    ]}
-                >
-                    <DatePicker />
-                </Form.Item>
-                <Form.Item
-                    label="Pin"
-                    name="pin"
-                    rules={[
-                        { required: true, message: "Please input your pin" },
-                    ]}
-                    className="ml-[40px]"
-                >
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item
-                    label="Gender"
-                    name="gender"
-                    rules={[
-                        { required: true, message: "Please enter your gender" },
-                    ]}
-                    className="ml-[40px] w-[20%]"
-                >
-                    <Select>
-                        <Option value="Male">Male</Option>
-                        <Option value="Female">Female</Option>
-                        <Option value="Others">Others</Option>
-                    </Select>
-                </Form.Item>
-            </Row>
+
+            <Form.Item
+                label="Pin"
+                name="pin"
+                rules={[{ required: true, message: "Please input your pin" }]}
+            >
+                <InputNumber className="w-[40%]" />
+            </Form.Item>
+
             <Row>
                 <Form.Item
                     label="Country"
@@ -381,11 +328,15 @@ const Register = () => {
                 </Form.Item>
             </Row>
 
-            <Form.Item name="profile_pic" label="Profile Photo">
+            <Form.Item
+                name="ngo_approval_cert"
+                label="Ngo Approval Certificate"
+            >
                 <Upload name="logo" listType="picture">
                     <Button icon={<UploadOutlined />}>Click to upload</Button>
                 </Upload>
             </Form.Item>
+
             <div id="recaptcha-container" className="ml-[15%] mb-[10%]"></div>
             <Form.Item className="ml-[40%]">
                 <Button
@@ -405,7 +356,7 @@ const Register = () => {
             >
                 <Form form={form2} onFinish={ValidateOtp}>
                     <Form.Item label="Enter Otp" name="otp">
-                        <Input />
+                        <InputNumber />
                     </Form.Item>
                     <Form.Item>
                         <Button
@@ -422,4 +373,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default NgoRegister;
