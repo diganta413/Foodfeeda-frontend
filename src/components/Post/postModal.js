@@ -1,16 +1,70 @@
 import { UserPic } from "../assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faImages } from "@fortawesome/free-solid-svg-icons";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import date from "date-and-time";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import { useState, useMemo, useRef } from "react";
+import ReactQuill from "react-quill";
 
-const PostModal = ({ setModal, post }) => {
-    const position = { lat: post.lat, lng: post.lon };
-    const now = new Date();
+const PostModal = ({ setModal, post, edit }) => {
+    const [position, setPosition] = useState({ lat: post.lat, lng: post.lon });
+    const [text, setText] = useState({ desc: "" });
+    const title = useRef("");
+    const [file, setFile] = useState(null);
     const { UserData } = useSelector((state) => state.user);
+
     const date = moment(new Date(post.created_at)).format("YYYY-MM-DD");
+
+    const markerRef = useRef(null);
+    const eventHandlers = useMemo(
+        () => ({
+            dragend() {
+                const marker = markerRef.current;
+                if (marker != null) {
+                    setPosition(marker.getLatLng());
+                }
+            },
+        }),
+        [setPosition]
+    );
+
+    const handleQuillEdit = (value) => {
+        setText((prev) => {
+            return {
+                ...prev,
+                desc: value,
+            };
+        });
+    };
+
+    const HandleSubmit = () => {
+        if (text.desc.length === 0 || text.desc.includes("<br")) return;
+
+        let newDate = new Date();
+        let currentOffset = newDate.getTimezoneOffset();
+        let ISTOffset = 330;
+        let ISTTime = new Date(
+            newDate.getTime() + (ISTOffset + currentOffset) * 60000
+        );
+        var form = new FormData();
+        form.append("food_photo", file);
+        form.append("title", title.current.value);
+        form.append(
+            "description",
+            text.desc.substring(3, text.desc.length - 4)
+        );
+        form.append("lat", position.lat.toString());
+        form.append("lon", position.lng.toString());
+        form.append("place", "Krishnanagar");
+
+        //console.log(form.get("food_photo"));
+        // dispatch(createPost(form));
+        // dispatch(getPosts());
+        setTimeout(() => {
+            setModal(0);
+        }, 3000);
+    };
 
     return (
         <div className="modal">
@@ -34,24 +88,70 @@ const PostModal = ({ setModal, post }) => {
 
                 <MapContainer center={[position.lat, position.lng]} zoom={13}>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    <Marker draggable={false} position={position}>
+                    <Marker
+                        draggable={edit === 0 ? false : true}
+                        eventHandlers={eventHandlers}
+                        position={position}
+                        ref={markerRef}
+                    >
                         <Popup minWidth={90}>
                             <span>This is the location!</span>
                         </Popup>
                     </Marker>
                 </MapContainer>
 
-                <div className="details">
-                    <div className="date">
-                        <div>
-                            <h4>Created On</h4>
-                            <h2>{date}</h2>
+                <div className={edit === 0 ? "details" : "details edit"}>
+                    {edit === 0 ? (
+                        <div className="date">
+                            <div>
+                                <h4>Created On</h4>
+                                <h2>{date}</h2>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="title">
+                            <input
+                                type="text"
+                                ref={title}
+                                placeholder="Add a Title"
+                                required
+                            />
+                            <input
+                                type="file"
+                                style={{ display: "none" }}
+                                id="fileUpload"
+                                accept=".png,.jpeg,.jpg"
+                                onChange={(e) => setFile(e.target.files[0])}
+                            />
+                        </div>
+                    )}
                     <div className="desc">
-                        <p>{post.description}</p>
+                        {edit === 0 ? (
+                            <p>{post.description}</p>
+                        ) : (
+                            <ReactQuill
+                                value={text.desc}
+                                onChange={handleQuillEdit}
+                                modules={{ toolbar: false }}
+                                placeholder="Write something here..."
+                            />
+                        )}
                     </div>
                 </div>
+                {edit === 1 ? (
+                    <div className="submitBtn shadow">
+                        <label className="imageBtn" htmlFor="fileUpload">
+                            <FontAwesomeIcon icon={faImages} />
+                        </label>
+                        <button
+                            onClick={() => {
+                                HandleSubmit();
+                            }}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                ) : null}
             </div>
         </div>
     );
