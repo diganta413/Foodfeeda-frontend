@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "antd";
 import LoginModal from "../Modals/LoginModal";
 import RegisterModal from "../Modals/RegsiterModal";
-import { LogoutOutlined } from "@ant-design/icons";
 import { signout } from "../../helpers/cookie";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../helpers/cookie";
 
@@ -13,7 +11,6 @@ const Header = () => {
     const [loginmodal, setloginmodal] = useState(false);
     const [registermodal, setregistermodal] = useState(false);
     //const userId = localStorage.getItem("userId")
-    const { userTokens } = useSelector((state) => state.user);
     //console.log(userTokens)
     let navigate = useNavigate();
     const handleClose_login = () => {

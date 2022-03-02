@@ -1,28 +1,22 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Row } from "antd";
-import axios from "../../config/axios";
 import {
     UserOutlined,
     LockOutlined,
     GooglePlusOutlined,
     FacebookFilled,
 } from "@ant-design/icons";
-import { commonSuccess } from "../../helpers/successResponse";
 import {
-    authenticate,
-    isAuth,
-    getUserId,
-    getCookie,
+    getUserId
 } from "../../helpers/cookie";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../../redux/slices/user.slice";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ type, handleClose }) => {
+const Login = ({ handleClose }) => {
     const [form] = Form.useForm();
     const [initialValues, setInitialValues] = useState({});
     const dispatch = useDispatch();
-    const { userTokens } = useSelector((state) => state.user);
     let navigate = useNavigate();
 
     const onFinish = (values) => {
