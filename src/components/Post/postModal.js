@@ -4,18 +4,25 @@ import { faTimes, faImages } from "@fortawesome/free-solid-svg-icons";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useSelector } from "react-redux";
 import moment from "moment";
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 
 const PostModal = ({ setModal, post, edit }) => {
     const [position, setPosition] = useState({ lat: post.lat, lng: post.lon });
     const [text, setText] = useState({ desc: "" });
-    const title = useRef("");
+    const [title, setTitle] = useState(post.title);
     const [file, setFile] = useState(null);
     const { UserData } = useSelector((state) => state.user);
 
     const date = moment(new Date(post.created_at)).format("YYYY-MM-DD");
-
+    useEffect(() => {
+        setText((prev) => {
+            return {
+                ...prev,
+                desc: post.desc,
+            };
+        });
+    }, []);
     const markerRef = useRef(null);
     const eventHandlers = useMemo(
         () => ({
@@ -110,10 +117,12 @@ const PostModal = ({ setModal, post, edit }) => {
                         </div>
                     ) : (
                         <div className="title">
+                            <h2>Title</h2>
                             <input
                                 type="text"
-                                ref={title}
+                                value={title}
                                 placeholder="Add a Title"
+                                onChange={(e) => setTitle(e.target.value)}
                                 required
                             />
                             <input
@@ -125,18 +134,24 @@ const PostModal = ({ setModal, post, edit }) => {
                             />
                         </div>
                     )}
-                    <div className="desc">
-                        {edit === 0 ? (
+
+                    {edit === 0 ? (
+                        <div className="desc">
                             <p>{post.description}</p>
-                        ) : (
-                            <ReactQuill
-                                value={text.desc}
-                                onChange={handleQuillEdit}
-                                modules={{ toolbar: false }}
-                                placeholder="Write something here..."
-                            />
-                        )}
-                    </div>
+                        </div>
+                    ) : (
+                        <>
+                            <h2>Desc</h2>
+                            <div className="desc">
+                                <ReactQuill
+                                    value={text.desc}
+                                    onChange={handleQuillEdit}
+                                    modules={{ toolbar: false }}
+                                    placeholder="Write something here..."
+                                />
+                            </div>
+                        </>
+                    )}
                 </div>
                 {edit === 1 ? (
                     <div className="submitBtn shadow">
