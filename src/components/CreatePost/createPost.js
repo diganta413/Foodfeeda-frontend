@@ -8,7 +8,6 @@ import LocationMarker from "./locationMarker";
 import { createPost } from "../../redux/slices/post.slice";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/slices/user.slice";
-import { formatTimeStr } from "antd/lib/statistic/utils";
 
 const CreatePost = () => {
     const [file, setFile] = useState(null);
@@ -23,12 +22,6 @@ const CreatePost = () => {
         e.preventDefault();
         if (text.desc.length === 0 || text.desc.includes("<br")) return;
 
-        let newDate = new Date();
-        let currentOffset = newDate.getTimezoneOffset();
-        let ISTOffset = 330;
-        let ISTTime = new Date(
-            newDate.getTime() + (ISTOffset + currentOffset) * 60000
-        );
         var form = new FormData();
         form.append("food_photo", file);
         form.append("title", title.current.value);

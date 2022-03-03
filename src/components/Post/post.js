@@ -14,7 +14,7 @@ const Post = ({ post }) => {
         <div className="postContainer shadow">
             <div className="postHeader">
                 <div className="imageContainer">
-                    <img src={UserData.profile_photo} alt="postImage" />
+                    <img src={`http://localhost:8000${UserData.profile_photo}`} alt="postImage" />
                 </div>
                 <h2>{UserData.first_name}</h2>
                 <div className="btnContainer">
@@ -41,7 +41,7 @@ const Post = ({ post }) => {
                     setModal(1);
                 }}
             >
-                <img src={post.food_photo} alt="postImage" />
+                <img src={`http://localhost:8000${post.food_photo}`} alt="postImage" />
                 <div className="text">
                     <h2>More Details!</h2>
                 </div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "../../config/axios";
-import { errorResponse, commonError } from "../../helpers/errorResponse";
+import { errorResponse } from "../../helpers/errorResponse";
 import { authenticate } from "../../helpers/cookie";
 import { commonSuccess } from "../../helpers/successResponse";
 import { removeCookie, getCookie } from "../../helpers/cookie";
@@ -106,8 +106,8 @@ const userSlice = createSlice({
         },
         [getPosts.rejected]: (state, action) => {
             state.userPostsLoading = false;
-            //if(action.payload.response.status == 401)
-            //removeCookie("access_token")
+            if(action.payload.response.status == 401)
+            removeCookie("access_token")
             errorResponse(state, action);
         },
     },
