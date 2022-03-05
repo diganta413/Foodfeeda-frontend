@@ -269,8 +269,11 @@ const Register = () => {
                             style={{ width: 80 }}
                             onChange={(value) => displayCountryCode(value)}
                         >
-                            {CountryCodes.map((country) => (
-                                <Option value={country.dial_code}>
+                            {CountryCodes.map((country, index) => (
+                                <Option
+                                    key={`countryIndex${index}`}
+                                    value={country.dial_code}
+                                >
                                     {country.dial_code}
                                 </Option>
                             ))}

@@ -1,5 +1,10 @@
 const countryCode = [
     {
+        name: "India",
+        dial_code: "+91",
+        code: "IN",
+    },
+    {
         name: "Afghanistan",
         dial_code: "+93",
         code: "AF",
@@ -483,11 +488,6 @@ const countryCode = [
         name: "Iceland",
         dial_code: "+354",
         code: "IS",
-    },
-    {
-        name: "India",
-        dial_code: "+91",
-        code: "IN",
     },
     {
         name: "Indonesia",

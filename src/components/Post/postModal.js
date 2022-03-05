@@ -5,16 +5,14 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import moment from "moment";
 import { useState, useMemo, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { updatePost } from "../../redux/slices/post.slice";
-import { useSelector, useDispatch } from "react-redux";
-import { getPosts } from "../../redux/slices/user.slice";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const PostModal = ({ setModal, post, edit }) => {
     const [position, setPosition] = useState({ lat: post.lat, lng: post.lon });
     const [text, setText] = useState({ desc: "" });
     const [title, setTitle] = useState(post.title);
     const [file, setFile] = useState(null);
-    const dispatch = useDispatch();
     const { UserData } = useSelector((state) => state.user);
 
     const date = moment(new Date(post.created_at)).format("YYYY-MM-DD");
@@ -48,7 +46,7 @@ const PostModal = ({ setModal, post, edit }) => {
         });
     };
 
-    const HandleSubmit = () => {
+    const HandleSubmit = async () => {
         if (text.desc.length === 0 || text.desc.includes("<br")) return;
 
         let newDate = new Date();
@@ -69,8 +67,7 @@ const PostModal = ({ setModal, post, edit }) => {
         form.append("place", "Krishnanagar");
 
         //console.log(form.get("food_photo"));
-        dispatch(updatePost(form));
-        dispatch(getPosts());
+        // await axios.put(`http://localhost:8000/api/post/foodpost/${id}`, form);
         setTimeout(() => {
             setModal(0);
         }, 3000);

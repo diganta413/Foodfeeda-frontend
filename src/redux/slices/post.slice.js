@@ -6,8 +6,6 @@ import axios from "../../config/axios";
 const initialState = {
     createPostLoading: false,
     createPostData: {},
-    updatePostLoading: false,
-    updatePostData: {},
 };
 
 export const createPost = createAsyncThunk(
@@ -16,22 +14,6 @@ export const createPost = createAsyncThunk(
         try {
             const { data } = await axios.post(
                 "http://localhost:8000/api/post/foodpost/",
-                payload
-            );
-            console.log(data);
-            return data;
-        } catch (error) {
-            return rejectWithValue(error);
-        }
-    }
-);
-
-export const updatePost = createAsyncThunk(
-    "post/updatePost",
-    async (payload, { id }, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.put(
-                `http://localhost:8000/api/post/foodpost/${id}`,
                 payload
             );
             console.log(data);
@@ -60,21 +42,6 @@ const postSlice = createSlice({
         },
         [createPost.rejected]: (state, action) => {
             state.createPostLoading = false;
-            errorResponse(state, action);
-        },
-        [updatePost.pending]: (state, action) => {
-            state.updatePostLoading = true;
-        },
-        [updatePost.fulfilled]: (state, action) => {
-            state.updatePostLoading = false;
-            console.log("Hello");
-            state.updatePostData = action.payload;
-
-            //SuccessResponse(state,action)
-            commonSuccess("Food Post Updated");
-        },
-        [updatePost.rejected]: (state, action) => {
-            state.updatePostLoading = false;
             errorResponse(state, action);
         },
     },
