@@ -2,16 +2,19 @@ import { UserPic } from "../assets";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faImages } from "@fortawesome/free-solid-svg-icons";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useSelector } from "react-redux";
 import moment from "moment";
 import { useState, useMemo, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
+import { updatePost } from "../../redux/slices/post.slice";
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts } from "../../redux/slices/user.slice";
 
 const PostModal = ({ setModal, post, edit }) => {
     const [position, setPosition] = useState({ lat: post.lat, lng: post.lon });
     const [text, setText] = useState({ desc: "" });
     const [title, setTitle] = useState(post.title);
     const [file, setFile] = useState(null);
+    const dispatch = useDispatch();
     const { UserData } = useSelector((state) => state.user);
 
     const date = moment(new Date(post.created_at)).format("YYYY-MM-DD");
@@ -66,8 +69,8 @@ const PostModal = ({ setModal, post, edit }) => {
         form.append("place", "Krishnanagar");
 
         //console.log(form.get("food_photo"));
-        // dispatch(createPost(form));
-        // dispatch(getPosts());
+        dispatch(updatePost(form));
+        dispatch(getPosts());
         setTimeout(() => {
             setModal(0);
         }, 3000);
