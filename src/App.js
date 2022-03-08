@@ -8,6 +8,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
+import Donation from "pages/Donation";
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                     path="/api/auth/user/email-veryfy"
                     element={<EmailVerify />}
                 />
+                <Route path="/donate" exact element={<Donation/>}/>
                 <Route path="/" exact element={<Home />} />
             </Routes>
             <Token />

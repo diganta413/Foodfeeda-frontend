@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "antd";
 import LoginModal from "../Modals/LoginModal";
 import RegisterModal from "../Modals/RegsiterModal";
 import { signout } from "../../helpers/cookie";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../helpers/cookie";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const access = getCookie("access_token");
+    const [userType,setuserType] =useState();
     const [loginmodal, setloginmodal] = useState(false);
     const [registermodal, setregistermodal] = useState(false);
     //const userId = localStorage.getItem("userId")
@@ -24,6 +26,13 @@ const Header = () => {
         signout();
         navigate("/");
     };
+    const { UserData } = useSelector((state) => state.user);
+    useEffect(() => {
+        
+        setuserType(UserData.type)
+    }, [])
+    
+    
 
     return (
         <div className="header">
@@ -34,7 +43,17 @@ const Header = () => {
                 />
             </div>
             {access ? (
-                <Button onClick={logout}>Log out</Button>
+                <div className="flex">
+                    {userType==1 && <button 
+                    className="rounded-[30px] mr-[20px] bg-[#f57324] text-white font-black items-center" 
+                    onClick={() => navigate("/donate")}
+                    >
+                        Donate Now
+                        </button>
+                    }
+                    
+                    <Button onClick={logout}>Log out</Button>
+                </div>
             ) : (
                 <div className="loginBtns flex">
                     <Button onClick={() => setloginmodal(!loginmodal)}>
