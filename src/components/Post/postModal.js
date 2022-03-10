@@ -6,7 +6,10 @@ import moment from "moment";
 import { useState, useMemo, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { useSelector } from "react-redux";
-import axios from "axios";
+import axios from "../../config/axios";
+import { getCookie } from "../../helpers/cookie";
+import { SuccessResponse,commonSuccess } from "../../helpers/successResponse";
+import { commonError } from "../../helpers/errorResponse";
 
 const PostModal = ({ setModal, post, edit }) => {
     const [position, setPosition] = useState({ lat: post.lat, lng: post.lon });
@@ -20,7 +23,7 @@ const PostModal = ({ setModal, post, edit }) => {
         setText((prev) => {
             return {
                 ...prev,
-                desc: post.desc,
+                desc: post.description,
             };
         });
     }, []);
@@ -45,6 +48,7 @@ const PostModal = ({ setModal, post, edit }) => {
             };
         });
     };
+    console.log(post)
 
     const HandleSubmit = async () => {
         if (text.desc.length === 0 || text.desc.includes("<br")) return;
@@ -57,7 +61,7 @@ const PostModal = ({ setModal, post, edit }) => {
         );
         var form = new FormData();
         form.append("food_photo", file);
-        form.append("title", title.current.value);
+        form.append("title", title);
         form.append(
             "description",
             text.desc.substring(3, text.desc.length - 4)
@@ -65,12 +69,20 @@ const PostModal = ({ setModal, post, edit }) => {
         form.append("lat", position.lat.toString());
         form.append("lon", position.lng.toString());
         form.append("place", "Krishnanagar");
-
-        //console.log(form.get("food_photo"));
-        // await axios.put(`http://localhost:8000/api/post/foodpost/${id}`, form);
-        setTimeout(() => {
-            setModal(0);
-        }, 3000);
+        for (var value of form.values()) {
+            console.log(value);
+         }
+        axios.put(`/post/foodpost/${post.id}/`, form)
+        .then((res) => {
+            commonSuccess("Post updated")
+            setTimeout(() => {
+                setModal(0);
+            }, 3000);
+        })
+        .catch((err) => {
+            commonError(err)
+        })
+        
     };
 
     return (
@@ -144,7 +156,7 @@ const PostModal = ({ setModal, post, edit }) => {
                             <h2>Desc</h2>
                             <div className="desc">
                                 <ReactQuill
-                                    value={text.desc}
+                                    value={text.desc || ''}
                                     onChange={handleQuillEdit}
                                     modules={{ toolbar: false }}
                                     placeholder="Write something here..."

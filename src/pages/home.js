@@ -23,7 +23,7 @@ const Home = () => {
         if (access) {
             dispatch(getUserData({ id: userId }));
             dispatch(getPosts());
-            //return navigate(`/user/${userId}`);
+            navigate(`/user/${userId}`);
         }
     }, []);
 
