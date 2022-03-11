@@ -44,8 +44,8 @@ const User = () => {
     return (
         <>
             <Header />
-            <div className="userHomeLayout">
-                <div className="userHomeContent">
+            <div className="userLayout">
+                <div className="content">
                     <CreatePost />
                     {userPosts.map((post) => (
                         <Post post={post} />

@@ -53,6 +53,7 @@ img {
   width: auto;
   max-width: 100%;
   max-height: 100%;
+  margin: 0 auto;
 }
 
 button {
@@ -829,6 +830,118 @@ input {
   cursor: pointer;
 }
 
+.donationPostContainer {
+  background-color: #fff;
+  border-radius: 15px;
+  max-width: 350px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.donationPostContainer .imageContainer {
+  height: 200px;
+  background-color: #03001d;
+}
+
+.donationPostContainer h2 {
+  padding: 10px 15px;
+}
+
+.donationPostContainer p {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.donationPostContainer .desc {
+  padding: 10px 15px;
+  max-height: 135px;
+  overflow: hidden;
+}
+
+.donationPostContainer .postHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+  padding: 0 15px;
+}
+
+.donationPostContainer .postHeader .imageContainer {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #03001d;
+  overflow: hidden;
+}
+
+.donationPostContainer .footer {
+  padding: 10px 15px;
+}
+
+.donationPostContainer .footer h3 {
+  font-weight: 600;
+}
+
+.donationPostContainer .footer .amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  gap: 3px;
+}
+
+.donationPostContainer .footer .amount p {
+  padding-bottom: 5px;
+  color: #5c5c5c;
+}
+
+.donationPostContainer .footer .flex {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.donationPostContainer .footer .flex .supporters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+
+.donationPostContainer .footer .flex .supporters .fa-heart {
+  color: red;
+}
+
+.donationPostContainer .footer .donateBtn {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  margin-top: 10px;
+}
+
+.donationPostContainer .footer .donateBtn button {
+  background-color: #000e4e;
+  color: #f1f1f1;
+}
+
 .shadow {
   -webkit-box-shadow: 0px 1.1px 2.2px rgba(0, 0, 0, 0.02), 0px 2.7px 5.3px rgba(0, 0, 0, 0.028), 0px 5px 10px rgba(0, 0, 0, 0.035), 0px 8.9px 17.9px rgba(0, 0, 0, 0.042), 0px 16.7px 33.4px rgba(0, 0, 0, 0.05), 0px 40px 80px rgba(0, 0, 0, 0.07);
           box-shadow: 0px 1.1px 2.2px rgba(0, 0, 0, 0.02), 0px 2.7px 5.3px rgba(0, 0, 0, 0.028), 0px 5px 10px rgba(0, 0, 0, 0.035), 0px 8.9px 17.9px rgba(0, 0, 0, 0.042), 0px 16.7px 33.4px rgba(0, 0, 0, 0.05), 0px 40px 80px rgba(0, 0, 0, 0.07);
@@ -837,6 +950,10 @@ input {
 .leaflet-container {
   width: 100%;
   height: 300px;
+}
+
+.noScrollBar::-webkit-scrollbar {
+  display: none;
 }
 
 .modal::-webkit-scrollbar {
@@ -865,11 +982,27 @@ input {
   border: none !important;
 }
 
-.userHomeLayout {
+.carousel-container {
+  padding-bottom: 60px;
+}
+
+.react-multiple-carousel__arrow--right {
+  bottom: 0px;
+}
+
+.react-multiple-carousel__arrow--left {
+  bottom: 0px;
+}
+
+.react-multi-carousel-dot-list {
+  bottom: 5px;
+}
+
+.userLayout {
   padding: 15px;
 }
 
-.userHomeLayout .userHomeContent {
+.userLayout .content {
   max-width: 600px;
   display: -ms-grid;
   display: grid;
@@ -878,8 +1011,51 @@ input {
 }
 
 @media (max-width: 500px) {
-  .userHomeLayout {
+  .layout {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
   }
+}
+
+.donationLayout {
+  padding: 15px;
+}
+
+.donationLayout .content .carouselMainContainer .carouselContainer {
+  max-width: 1000px;
+  padding-bottom: 20px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.donationLayout .content .gridPost {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  place-items: center;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  max-width: 1000px;
+  gap: 25px;
+}
+
+.donationLayout .content .gridPost .donationPostContainer {
+  margin: 0;
+}
+
+.donationLayout .content .mainContent {
+  display: -ms-grid;
+  display: grid;
+  margin: 0 auto;
+  max-width: 1000px;
+  place-items: center;
+}
+
+.donationLayout .content .mainContent .btn {
+  background-color: #000e4e;
+  color: #f1f1f1;
 }

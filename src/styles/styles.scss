@@ -5,6 +5,7 @@
 
 $text1: #03001d;
 $text2: #f1f1f1;
+$text3: #5c5c5c;
 $text-grey: rgb(196, 196, 196);
 $background1: #e9e9e9;
 $background2: #fff;
@@ -58,6 +59,7 @@ img {
     width: auto;
     max-width: 100%;
     max-height: 100%;
+    margin: 0 auto;
 }
 
 button {
@@ -667,17 +669,98 @@ input {
     }
 }
 
+.donationPostContainer {
+    background-color: $background2;
+    border-radius: 15px;
+    max-width: 350px;
+    overflow: hidden;
+    margin: 0 10px;
+    .imageContainer {
+        height: 200px;
+        background-color: $background3;
+    }
+    h2 {
+        padding: 10px 15px;
+    }
+    p {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .desc {
+        padding: 10px 15px;
+        max-height: 135px;
+        overflow: hidden;
+    }
+    .postHeader {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 0 15px;
+        .imageContainer {
+            display: grid;
+            place-items: center;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            background-color: $background3;
+            overflow: hidden;
+        }
+    }
+    .footer {
+        padding: 10px 15px;
+        h3 {
+            font-weight: 600;
+        }
+        .amount {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            p {
+                padding-bottom: 5px;
+                color: $text3;
+            }
+        }
+        .flex {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .supporters {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                .fa-heart {
+                    color: red;
+                }
+            }
+        }
+        .donateBtn {
+            display: grid;
+            place-items: center;
+            margin-top: 10px;
+            button {
+                background-color: $color3;
+                color: $text2;
+            }
+        }
+    }
+}
 .shadow {
     box-shadow: 0px 1.1px 2.2px rgba(0, 0, 0, 0.02),
         0px 2.7px 5.3px rgba(0, 0, 0, 0.028), 0px 5px 10px rgba(0, 0, 0, 0.035),
         0px 8.9px 17.9px rgba(0, 0, 0, 0.042),
         0px 16.7px 33.4px rgba(0, 0, 0, 0.05), 0px 40px 80px rgba(0, 0, 0, 0.07);
 }
+
 //Snippets
 
 .leaflet-container {
     width: 100%;
     height: 300px;
+}
+
+.noScrollBar::-webkit-scrollbar {
+    display: none;
 }
 
 .modal::-webkit-scrollbar {
@@ -703,10 +786,23 @@ input {
     border: none !important;
 }
 
+.carousel-container {
+    padding-bottom: 60px;
+}
+.react-multiple-carousel__arrow--right {
+    bottom: 0px;
+}
+.react-multiple-carousel__arrow--left {
+    bottom: 0px;
+}
+.react-multi-carousel-dot-list {
+    bottom: 5px;
+}
+
 //Pages
-.userHomeLayout {
+.userLayout {
     padding: 15px;
-    .userHomeContent {
+    .content {
         max-width: 600px;
         display: grid;
         gap: 25px;
@@ -714,7 +810,46 @@ input {
     }
 }
 @media (max-width: 500px) {
-    .userHomeLayout {
+    .layout {
         grid-template-columns: 1fr;
+    }
+}
+.donationLayout {
+    padding: 15px;
+    .content {
+        .carouselMainContainer {
+            .carouselContainer {
+                max-width: 1000px;
+                padding-bottom: 20px;
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+            }
+        }
+
+        .gridPost {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            place-items: center;
+            margin: 0 auto;
+            padding-bottom: 20px;
+            max-width: 1000px;
+            gap: 25px;
+            .donationPostContainer {
+                margin: 0;
+            }
+        }
+        .mainContent {
+            display: grid;
+            margin: 0 auto;
+            max-width: 1000px;
+            place-items: center;
+            .btn {
+                background-color: $color3;
+                color: $text2;
+            }
+        }
     }
 }
