@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "antd";
 import LoginModal from "../Modals/LoginModal";
 import RegisterModal from "../Modals/RegsiterModal";
-import { signout } from "../../helpers/cookie";
+import { signout, getUserType } from "../../helpers/cookie";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../helpers/cookie";
 import { useSelector } from "react-redux";
@@ -28,8 +28,8 @@ const Header = () => {
     };
     const { UserData } = useSelector((state) => state.user);
     useEffect(() => {
-        
-        setuserType(UserData.type)
+        const type = getUserType();
+        setuserType(type)
     }, [])
     
     

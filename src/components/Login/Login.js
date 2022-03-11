@@ -10,7 +10,7 @@ import {
     getUserId
 } from "../../helpers/cookie";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../../redux/slices/user.slice";
+import { userLogin, getUserData } from "../../redux/slices/user.slice";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ handleClose }) => {

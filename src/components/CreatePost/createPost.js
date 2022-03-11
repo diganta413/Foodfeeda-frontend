@@ -56,7 +56,7 @@ const CreatePost = () => {
                 <div className="imageContainer">
                     <img src={UserData.profile_photo} alt="profilePicture" />
                 </div>
-                <h3>Username</h3>
+                <h3>{UserData.email}</h3>
             </div>
             <button
                 className="createPostButton"

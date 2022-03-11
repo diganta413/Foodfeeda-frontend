@@ -73,6 +73,15 @@ export const getUserId = () => {
     }
 };
 
+export const getUserType = () => {
+    const access = getCookie("access_token");
+    if (access) {
+        var decoded = jwt(access);
+        console.log(decoded);
+        return decoded.type;
+    }
+};
+
 export const signout = () => {
     removeCookie("access_token");
     removeCookie("refresh_token");
