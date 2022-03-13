@@ -531,6 +531,12 @@ input {
     .postTitle {
         padding: 0 20px 20px 20px;
     }
+    .ngoDetails {
+        padding: 0 15px 15px 15px;
+        h3 {
+            margin-top: 10px;
+        }
+    }
     .postImage {
         border-radius: 13px;
         background-color: $background3;
@@ -814,6 +820,7 @@ input {
         grid-template-columns: 1fr;
     }
 }
+
 .donationLayout {
     padding: 15px;
     .content {

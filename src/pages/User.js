@@ -1,5 +1,5 @@
-import CreatePost from "../components/CreatePost/createPost";
-import Post from "../components/Post/post";
+import CreatePost from "../components/UserPost/createPost";
+import Post from "../components/UserPost/post";
 import { getAuth } from "../helpers/cookie";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";

@@ -657,6 +657,14 @@ input {
   padding: 0 20px 20px 20px;
 }
 
+.postContainer .ngoDetails {
+  padding: 0 15px 15px 15px;
+}
+
+.postContainer .ngoDetails h3 {
+  margin-top: 10px;
+}
+
 .postContainer .postImage {
   border-radius: 13px;
   background-color: #03001d;

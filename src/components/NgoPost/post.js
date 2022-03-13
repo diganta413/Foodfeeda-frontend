@@ -10,29 +10,31 @@ import { commonError } from "../../helpers/errorResponse";
 
 const Post = ({ post }) => {
     const [modal, setModal] = useState(0);
-    const [modalEdit, setModalEdit] = useState(0);
     const { UserData } = useSelector((state) => state.user);
 
     const deletePost = () => {
-        axios.delete(`/post/foodpost/${post.id}/`)
-        .then((res) => {
-            commonSuccess("Post deleted")
-            window.location.reload()
-        })
-        .catch((err) => commonError(err))
-    }
+        axios
+            .delete(`/post/foodpost/${post.id}/`)
+            .then((res) => {
+                commonSuccess("Post deleted");
+                window.location.reload();
+            })
+            .catch((err) => commonError(err));
+    };
 
     return (
         <div className="postContainer shadow">
             <div className="postHeader">
                 <div className="imageContainer">
-                    <img src={`http://localhost:8000${UserData.profile_photo}`} alt="postImage" />
+                    <img
+                        src={`http://localhost:8000${UserData.profile_photo}`}
+                        alt="postImage"
+                    />
                 </div>
                 <h2>{UserData.first_name}</h2>
                 <div className="btnContainer">
                     <button
                         onClick={() => {
-                            setModalEdit(1);
                             setModal(1);
                         }}
                     >
@@ -46,21 +48,12 @@ const Post = ({ post }) => {
             <div className="postTitle">
                 <h4>{post.title}</h4>
             </div>
-            <div
-                className="postImage"
-                onClick={() => {
-                    setModalEdit(0);
-                    setModal(1);
-                }}
-            >
-                <img src={`http://localhost:8000${post.food_photo}`} alt="postImage" />
-                <div className="text">
-                    <h2>More Details!</h2>
-                </div>
+            <div className="ngoDetails">
+                <p>{post.description}</p>
+                <h3>₹ {post.amount}</h3>
             </div>
-            {modal == 1 && (
-                <PostModal setModal={setModal} post={post} edit={modalEdit} />
-            )}
+
+            {modal == 1 && <PostModal setModal={setModal} post={post} />}
         </div>
     );
 };
